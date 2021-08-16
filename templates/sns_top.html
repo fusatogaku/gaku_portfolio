@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block header %}
+<!--  -->
+<body>
+  <div class="jumbotron">
+    <h1 class="display-4">SNSアプリ</h1>
+    <p class="lead">TOPページ</p>
+  </div>
+</body>
+{% endblock header %}
+<!--  -->
+{% block content %}
+
+<hr class="my-4" />
+<p>ログインはこちら</p>
+<a class="btn btn-primary btn-sm" href="{% url 'sns_login' %}" role="button"
+  >ログイン</a
+>
+<hr class="my-4" />
+<p>新規の方はこちら</p>
+<a class="btn btn-warning btn-sm" href="{% url 'sns_signup' %}" role="button"
+  >アカウント作成</a
+>
+<hr class="my-4" />
+<a class="btn btn-success btn-sm" href="{% url 'sns_list' %}" role="button"
+  >リスト</a
+>
+
+<p>
+  <a
+    class="btn btn-light btn-sm"
+    href="http://127.0.0.1:8000/admin/"
+    role="button"
+    >管理画面</a
+  >
+</p>
+
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

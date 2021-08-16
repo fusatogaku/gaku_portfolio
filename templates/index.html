@@ -1,0 +1,98 @@
+<!-- coding: utf-8 -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}{% static 'index.css' %}{% endblock customcss %}
+
+
+{% block header %}
+<header>
+    <div class="container">
+        <div class="icon">
+        <img src="{% static 'face.jpg' %}" width="150" height="120" alt="顔写真">
+        </div>
+        <div class="info">
+
+        <h1>冨里 岳</h1>
+        <p>成果物を載っけていきます。</p>
+        </div>
+        
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<section class="Description">
+    <!-- 1 -->
+    <section>
+        <h2>Todoアプリ</h2>
+    <ul class="slider">
+        <li><img src="{% static 'todo01.png' %}" alt="01"></li>
+        <li><img src="{% static 'todo02.png' %}" alt="02"></li>
+        <li><img src="{% static 'todo03.png' %}" alt="03"></li>
+    </ul>
+        {% comment %} <hr> {% endcomment %}
+        <p>Todoアプリです。期日つきのメモを作成できます。<br>案件、内容、優先度、期日が設定できます。<br>優先度で色が変わったりします。</p>
+
+    </section>
+
+    <hr color="blue">
+
+    <!-- 2 -->
+    <section>
+        <h2>SNSアプリ</h2>
+        <hr>
+        <ul class="slider">
+            <li><img src="{% static 'sns01.png' %}" alt="01"></li>
+            <li><img src="{% static 'sns02.png' %}" alt="02"></li>
+            <li><img src="{% static 'sns03.png' %}" alt="03"></li>
+        </ul>
+        <p>SNSアプリです。ログインして投稿したり、既読・いいねすることができます。<br>ゲストユーザーのアカウントはこちら<br>ユーザー名: guest<br>パスワード: psw</p>
+    </section>
+
+    <script>
+        $('.slider').slick({
+            accessibility: true,
+            autoplay:true,
+            autoplaySpeed:5000,
+            dots:true,
+            fade:true,
+            responsive:[
+                {
+                    breakpoint: 1024,
+                    setting:{
+                        slideToShow:3,}
+                },
+                {
+                    breakpoint:768,
+                    setting:{
+                        slideToShow:2},
+                },
+                {
+                    breakpoint:480,
+                    setting:{
+                        slideToShow:1,}
+                }]
+        });
+    </script>
+</secdtion>
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sns_top' %}">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

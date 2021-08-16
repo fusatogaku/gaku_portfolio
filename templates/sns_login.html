@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block customcss %}
+{% static 'signin.css' %}
+{% endblock customcss %}
+<!--  -->
+{% block content %}
+<body class="text-center">
+  {{ content }}
+
+  <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+    <div class="container">
+      <span class="skiplink-text">Skip to main content</span>
+    </div>
+  </a>
+
+  <form class="form-signin" method="POST">
+    {% csrf_token %}
+    <img
+      class="mb-4"
+      src="{% static 'snsicon.png' %}"
+      alt=""
+      width="150"
+      height="150"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">ログインする</h1>
+    <label for="inputEmail" class="sr-only">ユーザー名</label>
+    <input
+      type="text"
+      id="inputUsername"
+      class="form-control"
+      placeholder="ユーザー名"
+      name="username"
+      required
+      autofocus
+    />
+    <label for="inputPassword" class="sr-only">パスワード</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="パスワード"
+      name="password"
+      required
+    />
+    {{ error }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      ログイン
+    </button>
+    <a href="{% url 'sns_top' %}">TOPページ</a>
+  </form>
+</body>
+
+{% endblock content %}

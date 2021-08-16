@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <p>Duedate: ex. yyyy-mm-dd</p>
+        <input type="submit" value="create">
+    </form>
+{% endblock content %}
+</form>
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sns_top' %}">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

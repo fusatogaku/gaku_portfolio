@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!-- block header -->
+{% block header %}
+<div class="alert alert-dark" role="alert">This is detail</div>
+{% endblock header %}
+<!-- block content -->
+{% block content %}
+<!-- block content =>data -->
+<div class="alert alert-success" role="alert">{{ object.title }}</div>
+<div class="alert alert-success" role="alert">{{ object.memo }}</div>
+<!-- block content end -->
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sns_top' %}">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

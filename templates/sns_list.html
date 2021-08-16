@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+<!-- header -->
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>SNSアプリ</h3>
+</div>
+{% endblock header %}
+<!-- content -->
+{% block content %} {% if user.is_authenticated %}
+<div class="container">
+  <p>
+    <a href="{% url 'sns_create' %}">
+      <button type="button" class="btn btn-warning btn-sm">投稿する</button></a
+    >
+  </p>
+</div>
+
+<div class="container">
+  {% for item in object_list %}
+  <div class="alert alert-success" role="alert">
+    <p>タイトル：<a href="{% url 'sns_detail' item.pk %}"> {{ item.title }}</a></p>
+    <p>投稿者：{{ item.author }}</p>
+    <a
+      href="#"
+      class="btn btn-primary disabled"
+      role="button"
+      aria-pressed="true"
+      >❤️ {{ item.good }}</a
+    >
+    <a
+      href="#"
+      class="btn btn-secondary disabled"
+      role="button"
+      aria-pressed="true"
+      >👀 {{ item.read }}</a
+    >
+  </div>
+  {% endfor %}
+  <a href="{% url 'sns_logout' %}">ログアウト</a>
+</div>
+{% else %}
+<p>ログインしてください。</p>
+<p>
+  <a href="{% url 'sns_login' %}">ログインする</a>
+</p>
+{% endif %}
+<a href="{% url 'sns_top' %}">Topページに戻る</a>
+{% endblock content %}
+
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

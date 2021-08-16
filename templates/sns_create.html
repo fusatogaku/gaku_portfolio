@@ -1,0 +1,50 @@
+<!-- coding: utf-8 -->
+{% extends 'base.html' %}
+
+<!-- content -->
+{% block content %} {% if user.is_authenticated %}
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <!-- <p>{{ form.as_p }}</p> ※投稿者の名前も操作できちゃうため、個別に作成。-->
+  <p>
+    タイトル：
+    <input type="text" name="title" />
+  </p>
+  <p>
+    本文：
+    <input type="text" name="content" />
+  </p>
+  <p><input type="file" name="snsimage" /></p>
+  <p>
+    <input type="hidden" name="author" value="{{ user.username }}" />
+  </p>
+  <input type="submit" value="create" />
+</form>
+{% else %}
+<p>ログインしてください。</p>
+<p>
+  <a href="{% url 'sns_login' %}">ログインする</a>
+</p>
+{% endif %}
+<a href="{% url 'sns_top' %}">Topページに戻る</a>
+
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

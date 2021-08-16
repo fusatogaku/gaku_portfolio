@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+<!-- header -->
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>詳細ページ</h3>
+</div>
+{% endblock header %}
+<!-- content -->
+{% block content %} {% if user.is_authenticated %}
+
+<div class="container">
+  <div class="alert alert-success" role="alert">
+    <p>タイトル：{{ object.title }}</p>
+    <p>投稿者：{{ object.author }}</p>
+    <p><img src="{{ object.snsimage.url }}" width="300" /></p>
+    <a
+      href="{% url 'good' object.pk %}"
+      class="btn btn-primary"
+      role="button"
+      aria-pressed="true"
+      >いいね {{ item.good }}</a
+    >
+    <a
+      href="{% url 'read' object.pk %}"
+      class="btn btn-secondary"
+      role="button"
+      aria-pressed="true"
+      >既読 {{ item.read }}</a
+    >
+  </div>
+  <a href="{% url 'sns_list' %}">リストページに戻る</a>
+</div>
+{% else %}
+<p>ログインしてください。</p>
+<p>
+  <a href="{% url 'sns_login' %}">ログインする</a>
+</p>
+{% endif %}
+<a href="{% url 'sns_top' %}">Topページに戻る</a>
+{% endblock content %}
+
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}

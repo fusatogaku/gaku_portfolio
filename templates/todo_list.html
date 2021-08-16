@@ -1,0 +1,68 @@
+<!-- extend -->
+{% extends 'base.html' %}
+<!-- block header -->
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Todolist</h1>
+    <p class="lead">Todoリストを作成して、タスク漏れを防ぐ。</p>
+  </div>
+</div>
+{% endblock header %}
+<!-- block content -->
+{% block content %}
+<div class="container">
+  <a
+    href="{% url 'todo_create' %}"
+    class="btn btn-secondary mb-3"
+    role="button"
+    aria-pressed="true"
+    >新規作成</a
+  >
+  {% for item in object_list %}
+  <div class="alert alert-{{ item.priority }}" role="alert">
+    <p>タイトル: {{ item.title }} / 期日:{{ item.duedate }}</p>
+    <a
+      href="{% url 'todo_update' item.pk %}"
+      class="btn btn-primary"
+      role="button"
+      aria-pressed="true"
+      >編集画面へ</a
+    >
+    <a
+      href="{% url 'todo_delete' item.pk %}"
+      class="btn btn-success"
+      role="button"
+      aria-pressed="true"
+      >削除する</a
+    >
+    <a
+      href="{% url 'todo_detail' item.pk %}"
+      class="btn btn-info"
+      role="button"
+      aria-pressed="true"
+      >詳細画面へ</a
+    >
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sns_top' %}">SNSアプリ</a>
+      </li>
+    </ul>
+  </div>
+{% endblock navbar %}
