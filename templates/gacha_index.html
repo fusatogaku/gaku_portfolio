@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>ガチャシミュレータ</h1>
+    <table border="1px">
+        <thead bgcolor="black">
+            <tr><th colspan="2"><font color="white">モード</font></th></tr>
+        </thead>
+        <tr>
+            <td>単発ガチャ</td>
+            <td>一定の確率でガチャを引きます。</td>
+        </tr>
+        <tr>
+            <td>天井ガチャ</td>
+            <td>最高レアリティのみのガチャ。</td>
+        </tr>
+        <tr>
+            <td>保証ガチャ</td>
+            <td>10連ガチャなどで、★4以上確定とかのあれ。</td>
+        </tr>
+        <tr>
+            <td>10連ガチャ</td>
+            <td>10連続のガチャ。10回目までに★4が排出されなかったら、最後の1回は保証ガチャとなる。</td>
+        </tr>
+    </table>
+    <hr>
+    <h3>[ガチャ内容]</h3>
+    <p>
+    ★5(3%) : 大当たり！！１ ~ 大当たり！！４</br>
+    ★4(15%) : 当たり！１ ~ 当たり！６</br>
+    ★3(82%) : ノーマル１ ~ ノーマル１０</br>
+
+    <hr>
+    <form action="{% url 'gacha_result' %}" method="POST" class="form">{% csrf_token %}
+        <div class="gacha">
+            <label　for="gacha_mode">ガチャ選択</br></label>
+            <select name="mode">
+                <option value="non" selected>モードを選択してください。</option>
+                <option value="normal">単発ガチャ</option>
+                <option value="ceil">天井ガチャ</option>
+                <option value="rescue">保証ガチャ</option>
+                <option value="10">10連ガチャ</option>
+            </select>
+            </br>
+            
+            <button type="submit">ガチャを回す！</button>
+        </div>
+    </form>
+    <p size="9"><font color="red">{{ error }}</font></p>
+</div>
+
+{% endblock content %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">（現在位置）</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_list' %}">Todoアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sns_top' %}">SNSアプリ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">ガチャシミュレータ</a>
+      </li>
+    </ul>
+</div>
+{% endblock navbar %}

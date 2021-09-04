@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'todo_app.apps.TodoAppConfig',
     'sns_app.apps.SnsAppConfig',
+    'gacha.apps.GachaConfig',
     
 ]
 

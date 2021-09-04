@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('index.urls')),
     path('todo/', include('todo_app.urls')),
     path('sns/', include('sns_app.urls')),
+    path('gacha/', include('gacha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
